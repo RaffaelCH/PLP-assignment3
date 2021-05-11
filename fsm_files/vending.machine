@@ -1,0 +1,17 @@
+
+# Empty lines and anything after an octothorpe is ignored
+
+[States]
+*Ready: You are standing in front of the vending machine
+# Whitespace around names or descriptions should be stripped:
+  Select  :    You can now make your selection
+Dispense: You can now grab your selection from the chute
++Exit: The end      # This will end the program
+
+[Transitions]
+Ready (Pay 5) Select: You put 5 money into the machine
+Select (Cancel -5) Ready: You cancel the transaction
+Select (Choose "Cola") Dispense: You select a beverage
+Dispense (TakeItem) Ready: You take the item
+Ready  (  Exit)  Exit:   You go home # Whitespace ignored
+

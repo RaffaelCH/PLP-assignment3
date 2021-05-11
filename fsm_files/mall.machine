@@ -1,0 +1,45 @@
+[States]
+
+Basement floor: The subway station below the mall
+*Ground floor: Perfumes
+First floor: Men's apparel
+Second floor: Women's apparel
+Third floor: Restaurants
++Exit: Exit
++Subway: Exit
+
+[Transitions]
+
+Ground floor (exit) Exit: Leaving on foot
+Basement floor (subway) Subway: Leaving by train
+
+Basement floor (elevator -1) Basement floor: Not going anywhere
+Ground floor (elevator -1) Basement floor: Taking the elevator
+First floor (elevator -1) Basement floor: Taking the elevator
+Second floor (elevator -1) Basement floor: Taking the elevator
+Third floor (elevator -1) Basement floor: Taking the elevator
+
+Basement floor (elevator 0) Ground floor: Taking the elevator
+Ground floor (elevator 0) Ground floor: Not going anywhere
+First floor (elevator 0) Ground floor: Taking the elevator
+Second floor (elevator 0) Ground floor: Taking the elevator
+Third floor (elevator 0) Ground floor: Taking the elevator
+
+Basement floor (elevator 1) First floor: Taking the elevator
+Ground floor (elevator 1) First floor: Taking the elevator
+First floor (elevator 1) First floor: Not going anywhere
+Second floor (elevator 1) First floor: Taking the elevator
+Third floor (elevator 1) First floor: Taking the elevator
+
+Basement floor (elevator 2) Second floor: Taking the elevator
+Ground floor (elevator 2) Second floor: Taking the elevator
+First floor (elevator 2) Second floor: Taking the elevator
+Second floor (elevator 2) Second floor: Not going anywhere
+Third floor (elevator 2) Second floor: Taking the elevator
+
+Basement floor (elevator 3) Third floor: Taking the elevator
+Ground floor (elevator 3) Third floor: Taking the elevator
+First floor (elevator 3) Third floor: Taking the elevator
+Third floor (elevator 3) Third floor: Not going anywhere
+Second floor (elevator 3) Third floor: Taking the elevator
+

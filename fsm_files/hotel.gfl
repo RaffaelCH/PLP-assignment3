@@ -1,0 +1,186 @@
+# This represents a game file.
+# Anything after an octothorpe is still ignored.
+
+@*Lobby:      # Starting state
+ You find yourself in a hotel lobby. There is nobody at the reception and you don't see any other guests. You can see people walking by on the street behind the glass outside.
+
+ ┌──┬──┬──────────────────┬────┐
+ │  └──┘                  │┼┼┼┼│
+ │                    │   └────┴──┬──┬───────┐
+ ├────────────────────┘           └──┘       │
+ │                                           │
+ │                                           │
+ ├─┐                         ( ┌┐ )          │
+ │ │                           ││            │
+ ├─┘                         ( └┘ )          │
+ │     ( ┌┐ )                         ( ┌┐ ) │
+ │       ││                             ││   │
+ │     ( └┘ )                         ( └┘ ) │
+ │                   ┌──────┐                │
+ └───────────────────┴──────┴────────────────┘
+ [Access security panel]: There's a keypad next to the hotel entrance
+ [Go to restrooms]: There's a doorway marked "Restrooms" leading to a corridor
+
+>Lobby (Access security panel) SecurityPanel: You look at the keypad
+>Lobby (Go to restrooms) RestroomCorridor: You go through the doorway maked "Restrooms"
+
+@SecurityPanel:
+ Maybe entering the right combination will open the door?
+
+ ┌───────┐
+ │ 1 2 3 │
+ │ 4 5 6 │
+ │ 7 8 9 │
+ │   0   │
+ └───────┘
+
+ [Enter ****]: Enter four digits
+ [Walk away]: Leave the security panel
+
+>SecurityPanel (Enter 5729) Outside: You enter the code and the door opens!
+>SecurityPanel (Enter *) SecurityPanel: The code you entered was rejected. Nothing happens...
+>SecurityPanel (Walk away) Lobby: You walk away from the security panel.
+
+@+Outside:        # End state
+ You made it! You draw in the fresh air and wonder how you ended up in that hotel. Don't do drugs, kids... [The End]
+
+                                .-~ | ~-.
+                                |   |   |
+                                |  _:_  |                    .-:~--.._
+                              .-"~~ | ~~"-.                .~  |      |
+             _.-~:.           |     |     |                |   |      |
+            |    | `.         |     |     |                |   |      |
+   _..--~:-.|    |  |         |     |     |                |   |      |
+  |      |  ~.   |  |         |  __.:.__  |                |   |      |
+  |      |   |   |  |       .-"~~   |   ~~"-.              |   |      |
+  |      |   |  _|.--~:-.   |       |       |         .:~-.|   |      |
+  |      A   | |      |  ~. |       |   _.-:~--._   .' |   |   |      |
+  |      M   | |      |   | |       |  |   |     |  |  |   |   |      |
+  |      C   | |      |   | |       |  |   |     |  |  |   |   |      |
+  |      |   | |      |   | |       |  |   |     |  |  |   |   |      |
+  |      9   | |      |   | |       |  |   |     |  |  |   |   |      |
+  |      9   | |      |   | |       |  |   |     |  |  |   |   |      |
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+@RestroomCorridor:
+ Not much here except an unecessarily large mirror on the far side of the corridor. There are four doors.
+
+ ┌────────────────────────────────────────────────┐
+ │                                                │
+ │                                                │
+ │            ┌──────────────────────┐            │
+ │            │                      │            │
+ │        /│  │    ┌────────────┐    │  │\        │
+ │       / │  │    │            │    │  │ \       │
+ │      │  │  │    │            │    │  │  │      │
+ │   /│ │  │  │    │    ┌──┐    │    │  │  │ │\   │
+ │  / │ │  │  │    │    │oo│    │    │  │  │ │ \  │
+ │ │  │ │  │  │    │    └┬┬┘    │    │  │  │ │  │ │
+ │ │  │ │  │  │    │    /││\    │    │  │  │ │  │ │
+ │ │  │ │  │  │    │   / └┘ \   │    │  │  │ │  │ │
+ │ │  │ │  │  │    │     /\     │    │  │  │ │  │ │
+ │ │  │ │  │  │    │    /  \    │    │  │  │ │  │ │
+ │ │  │ │  │  │    │   /    \   │    │  │  │ │  │ │
+ │ │  │ │  │  │    └────────────┘    │  │  │ │  │ │
+ │ │  │ │  │  │                      │  │  │ │  │ │
+ │ │  │ │  │  └──────────────────────┘  │  │ │  │ │
+ │ │  │ │  │ /                        \ │  │ │  │ │
+ │ │  │ │  │/                          \│  │ │  │ │
+ │ │  │ │  /                            \  │ │  │ │
+ │ │  │ │ /                              \ │ │  │ │
+ │ │  │ │/                                \│ │  │ │
+ │ │  │ /                                  \ │  │ │
+ │ │  │/                                    \│  │ │
+ │ │  /                                      \  │ │
+ │ │ /                                        \ │ │
+ │ │/                                          \│ │
+ │ /                                            \ │
+ │/                                              \│
+ │                                                │
+ └────────────────────────────────────────────────┘
+ [Go to male restrooms]: First door on the left
+ [Go to female restrooms]: Second door on the left
+ [Go to mixed restrooms]: First door on the right
+ [Go to supply closet]: It says "Supplies" on the door
+ [Go back]: Back to the lobby
+
+>RestroomCorridor (Go to male restrooms) MaleRestrooms: You go to the male restrooms
+>RestroomCorridor (Go to female restrooms) FemaleRestrooms: You go to the female restrooms
+>RestroomCorridor (Go to mixed restrooms) MixedRestrooms: You go to the mixed restrooms
+>RestroomCorridor (Go to supply closet) RestroomCorridor: The door is locked
+>RestroomCorridor (Go back) Lobby: You go back to the lobby
+
+@MaleRestrooms:
+ Nobody and nothing's here. You hear only the buzz of the fluorescent lights.
+
+       (,.)   ,.   (,.)   ,.   (,.)   ,.
+        ||    ||    ||    ||    ||    ||
+        ||    ||    ||    ||    ||    ||
+      ,.||..  ||  ,.||..  ||  ,.||..  ||
+     //""""\\ || //""""\\ || //""""\\ ||
+     ||    || || ||    || || ||    || ||
+     ||    || || ||    || || ||    || ||
+     ||____|| || ||____|| || ||____|| ||
+     `.____.' || `.____.' || `.____.' ||
+              ||          ||          ||
+              ||          ||          ||
+  ____________||__________||__________||___
+
+ [Go back]: Back to the corridor
+
+>MaleRestrooms (Go back) RestroomCorridor: You go back to the corridor
+
+@FemaleRestrooms
+ Nobody and nothing's here. One of the lights is flickering annoyingly.
+ ___   _______________   ___   _______________   ___
+    I I               I I   I I               I I
+    I I               I I   I I               I I
+    IHI               I I   IHI               I I
+    I I               I I   I I               I I
+    I I               I I   I I               I I
+    I I               I I   I I               I I
+    I I            O  I-I   I I            O  I-I
+    I I               I I   I I               I I
+    I I               I I   I I               I I
+    I I               I I   I I               I I
+    IHI               I I   IHI               I I
+    I I               I I   I I               I I
+ ___I I_______________I I___I I_______________I I___
+  I                       I                       I
+  I                       I                       I
+  I                       I                       I
+ _H_                     _H_                     _H_
+
+ [Go back]: Back to the corridor
+
+>FemaleRestrooms (Go back) RestroomCorridor: You go back to the corridor
+
+@MixedRestrooms
+ Nobody's here, but while looking around, you find a crumpled up piece of paper on the floor:
+
+                                                             /────────────┐
+                               /─────────────────────────────             │
+   ┌───────────────────────────                            /              │
+   │                                                     /                │
+   │       .----------.    _________                    /     .----.      │
+   │      /          /    /         |        .-''-.         .   _   \     │
+   │     /   ______.'    '-----.   .'      .' .-.  )       /  .' )   |   │
+  │     /   /_               .'  .'       / .'  / /       |   (_.    /   │
+  │    /      '''--.       .'  .'        (_/   / /         \     ,  /    │
+  │   '___          `.   .'  .'               / /           `'-'/  /     │
+  │       `'.         | '---'                / /        .-.    /  /      │
+  │          )        |                     . '         \  '--'  /       │
+  │  ......-'        /                     / /    _.-')  '-....-'       │
+ │   \          _..'`                    .' '  _.'.-''                  │
+ │    '------'''            /           /  /.-'_.'                      │
+ │                     \   /           /    _.'         \               │
+ │                      /   \         ( _.-'             /              │
+ │                     /     \                          /               │
+ │                     /                                     /──────────┘
+ │                    /        /────────────────────────────
+ └─────────────────────────────
+ [Go back]: Back to the corridor
+
+>MixedRestrooms (Go back) RestroomCorridor: You go back to the corridor
+
+

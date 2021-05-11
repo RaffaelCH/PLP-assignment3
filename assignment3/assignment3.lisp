@@ -21,10 +21,6 @@
     :initform nil
     :reader is-end-state
     :documentation "Flag to designate end state.")
-   (state-function
-    :initarg :state-function
-    :accessor state-function
-    :documentation "Function that represents this state's behaviour.")
    (transitions ; HT with transitions originating from this state
     :initarg :transitions
     :initform (make-hash-table :test 'equal)
@@ -32,16 +28,21 @@
     :documentation "Transitions (by name) from this state")))
 
 
-; Initializes state-function for each state.
-(defmethod initialize-instance :after ((state state) &key)
-  (setf (state-function state)
-    (lambda () (format t "[~a] ~a~%" (state-name state) (state-description state)))))
+; Generic method (blueprint).
+(defgeneric execute-state-behavior (class-parameter)
+  (:documentation "Represents the states behavior."))
+  
+
+; Method for the state class (actual implementation).
+(defmethod execute-state-behavior ((class-parameter state))
+  (format t "[~a] ~a~%" (state-name class-parameter) (state-description class-parameter)))
 
 
 
 ; Hash the parameters to create a key -> circumvents issues with equality.
 (defun make-key-from-parameters (parameters)
-  (if (not parameters) (setf parameters (list nil))); handles parameterless transition
+  (if (not parameters)
+    (setf parameters (list nil))); handles parameterless transition
   (sxhash (sort parameters #'(lambda (x y) (< (sxhash x) (sxhash y))))))
 
 
@@ -63,25 +64,14 @@
   (setf (gethash (make-key-from-parameters parameters) (gethash command (transitions start-state))) transition))
 
 
-
-; Used to create valid state names (without whitespace).
-(defun create-state-classname (classname)
-  (concatenate 'string "state" (write-to-string (sxhash classname))))
-
-
-(defun register-state (name state)
-  (setf (gethash name *states*) state))
-
-
 (defun retrieve-state (name)
   (gethash name *states*))
 
 
 ; Defines new state and registers a new instance of it.
 (defun define-and-register-state (name description &optional is-end-state)
-  (let ((hashed-name (intern (create-state-classname name))))
-    (eval `(defclass ,hashed-name (state) ()))
-    (register-state name (eval `(make-instance ',hashed-name :state-name ,name :state-description ,description :is-end-state ,is-end-state)))))
+  (setf (gethash name *states*)
+    (make-instance 'state :state-name name :state-description description :is-end-state is-end-state)))
 
 
 (defun create-transition (end-state-name parameters description)
@@ -111,7 +101,8 @@
   (let (state-name state-description)
     (setf state-name (trim-whitespace (subseq string 0 (search delimiter string))))
     (setf state-description (subseq string (+ (length delimiter) (search delimiter string))))
-    (if trim (setf state-description (trim-whitespace state-description)))
+    (if trim
+	  (setf state-description (trim-whitespace state-description)))
     (cond
       ((string= "*" (subseq state-name 0 1)) ; start state
         (define-and-register-state (subseq state-name 1) state-description)
@@ -224,7 +215,7 @@
 
   ; Listen for inputs.
   (loop
-    (funcall (state-function *current-state*))
+    (execute-state-behavior *current-state*)
     (if (is-end-state *current-state*)
       (return-from main))
     (execute-transition *current-state* (read-line))))

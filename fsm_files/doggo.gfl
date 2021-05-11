@@ -1,0 +1,75 @@
+@*Neutral:
+
+     ▄▀▄▀▀▀▀▄▀▄
+     █        ▀▄      ▄
+    █  ▀  ▀     ▀▄▄  █ █
+    █ ▄ █▀ ▄       ▀▀  █
+    █  ▀▀▀▀            █
+    █                  █
+    █                  █
+     █  ▄▄  ▄▄▄▄  ▄▄  █
+     █ ▄▀█ ▄▀  █ ▄▀█ ▄▀
+      ▀   ▀     ▀   ▀
+  [Pet]: He's a good boy.
+  [Order talk]: "Who's a good boy?"
+  [Order *]: What other tricks might Doggo know?
+  [Abandon]: You wouldn't! How could you?!
+
+> Neutral (Pet) Petting: Doggo is excited!
+> Neutral (Order sit) Neutral: Doggo sits down and looks at you in anticipation!
+> Neutral (Order talk) Neutral: Doggo tells a joke. Nobody laughs. Doggo is happy!
+> Neutral (Order turn) Neutral: Doggo spins around, trying to catch its tail!
+> Neutral (Order *) Neutral: Doggo tilts its head in confusion... # custom error message
+> Neutral (Order sleep) Sleeping: Doggo plays dead...
+> Neutral (Abandon) GameOver: Doggo is sad to see you go :(
+
+@Petting:
+
+     ▄▀▄▀▀▀▀▄▀▄
+     █        ▀▄      ▄
+    █  ^  ^     ▀▄▄  █ █
+    █   o          ▀▀  █
+    █                  █
+    █                  █
+    █                  █
+     █  ▄▄  ▄▄▄▄  ▄▄  █
+     █ ▄▀█ ▄▀  █ ▄▀█ ▄▀
+      ▀   ▀     ▀   ▀
+
+  [Pet]: He's still a good boy.
+  [Stop petting]: Even if it's never enough.
+
+> Petting (Pet) Petting: Doggo is still excited!
+> Petting (Stop petting) Neutral: Doggo is still excited!
+
+@Sleeping:
+
+
+
+     ▄▀▄▀▀▀▀▄▀▄
+     █        ▀▄      ▄
+    █  v  v     ▀▄▄  █ █
+    █   -          ▀▀  █
+    █                  █
+    █                  █
+     █▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+
+
+  [Say "treat!"]: Let's play!
+
+> Sleeping (Say "treat!") Neutral: Doggo heard "treat" and woke up
+> Sleeping (Say *) Sleeping: Doggo still playing dead
+
+@+GameOver:
+
+     ▄▀▄▀▀▀▀▄▀▄  ..-- woof woof!!!
+     █        ▀▄      ▄
+    █  ▀  ▀     ▀▄▄  █ █
+    █   █▀         ▀▀  █
+    █  ▀▀▀▀            █
+    █                  █
+    █                  █
+     █  ▄▄  ▄▄▄▄  ▄▄  █
+     █ ▄▀█ ▄▀  █ ▄▀█ ▄▀
+      ▀   ▀     ▀   ▀
+
